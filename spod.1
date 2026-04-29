@@ -1,0 +1,58 @@
+.Dd 2026-04-29
+.Dt SPOD 1
+.Os
+.Sh NAME
+.Nm spod
+.Nd static podcast page generator
+.Sh SYNOPSIS
+.Nm
+.Ar podcastdir
+.Op Ar outputdir
+.Sh DESCRIPTION
+.Nm
+generates static HTML pages for podcasts, similar to
+.Xr stagit 1
+for git repositories.
+.Pp
+.Ar podcastdir
+is a parent directory containing one subdirectory per podcast.
+Each podcast directory should contain:
+.Bl -bullet
+.It
+Audio files (.mp3, .ogg, .opus, .m4a, .flac, .wav)
+.It
+A README, README.md, or README.txt file (optional)
+.It
+A cover image named COVER.* or cover.* (optional)
+.El
+.Pp
+If
+.Ar outputdir
+is not specified, output is written to
+.Pa out/
+in the current directory.
+.Sh EXAMPLE LAYOUT
+.Bd -literal
+podcasts/
+  my-show/
+    COVER.jpg
+    README.md
+    001-first-episode.mp3
+    002-second-episode.mp3
+  another-show/
+    cover.png
+    README
+    intro.ogg
+.Ed
+.Pp
+Running
+.Nm
+.Pa podcasts/
+generates a static site with an index page listing all shows
+and per-show pages with episode tables, cover art, and descriptions.
+.Pp
+Audio files are symlinked into the output directory, not copied.
+.Sh SEE ALSO
+.Xr stagit 1
+.Sh AUTHORS
+Kris Yotam
